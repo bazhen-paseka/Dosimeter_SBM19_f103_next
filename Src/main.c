@@ -30,7 +30,7 @@
 	#include <string.h>
 	#include <stdio.h>
 	#include "tm1637_sm.h"
-  uint32_t i= 1235;
+	#include "dosimeter_sbm19_next_sm.h"
 
 /* USER CODE END Includes */
 
@@ -98,22 +98,12 @@ int main(void)
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 
-		#define SOFT_VERSION			100
-		int soft_version_arr_int[3];
-		soft_version_arr_int[0] = ((SOFT_VERSION) / 100) %10 ;
-		soft_version_arr_int[1] = ((SOFT_VERSION) /  10) %10 ;
-		soft_version_arr_int[2] = ((SOFT_VERSION)      ) %10 ;
+	Dozimeter_Init(&huart1);
 
-  	char DataChar[100];
-  	sprintf(DataChar,"\r\n\r\n\tDosimeter SBM-19 Next 2020-march-24 v%d.%d.%d \r\n\tUART1 for debug on speed 115200/8-N-1\r\n\r\n",
-  			soft_version_arr_int[0], soft_version_arr_int[1], soft_version_arr_int[2]);
-  	HAL_UART_Transmit(&huart1, (uint8_t *)DataChar, strlen(DataChar), 100);
-
-  	tm1637_struct h1_tm1637 =
-  	  {
-  		 .clk_pin  = GPIO_PIN_0,
+  	tm1637_struct h1_tm1637 = {
+  		 .clk_pin  = GPIO_PIN_4,
   		 .clk_port = GPIOB,
-  		 .dio_pin  = GPIO_PIN_1,
+  		 .dio_pin  = GPIO_PIN_5,
   		 .dio_port = GPIOB
   	  };
   	  __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -126,10 +116,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_GPIO_TogglePin(LED_BOARD_GPIO_Port, LED_BOARD_Pin);
-	  HAL_Delay(1200);
-	  i++;
-	  tm1637_Display_Decimal(&h1_tm1637, i, no_double_dot);
+	  	  Dozimeter_Main(&huart1, &h1_tm1637);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
