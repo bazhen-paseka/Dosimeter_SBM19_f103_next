@@ -26,6 +26,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+	#include <string.h>
+	#include <stdio.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,6 +92,17 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+		#define SOFT_VERSION			100
+		int soft_version_arr_int[3];
+		soft_version_arr_int[0] = ((SOFT_VERSION) / 100) %10 ;
+		soft_version_arr_int[1] = ((SOFT_VERSION) /  10) %10 ;
+		soft_version_arr_int[2] = ((SOFT_VERSION)      ) %10 ;
+
+  	char DataChar[100];
+  	sprintf(DataChar,"\r\n\r\n\tDosimeter SBM-19 Next 2020-march-24 v%d.%d.%d \r\n\tUART1 for debug on speed 115200/8-N-1\r\n\r\n",
+  			soft_version_arr_int[0], soft_version_arr_int[1], soft_version_arr_int[2]);
+  	HAL_UART_Transmit(&huart1, (uint8_t *)DataChar, strlen(DataChar), 100);
 
   /* USER CODE END 2 */
 
