@@ -63,6 +63,14 @@ void Error_Handler(void);
 #define SBM19_IRQ_EXTI_IRQn EXTI1_IRQn
 #define LED_BOARD_Pin GPIO_PIN_0
 #define LED_BOARD_GPIO_Port GPIOB
+#define LED_BLUE_1_Pin GPIO_PIN_12
+#define LED_BLUE_1_GPIO_Port GPIOB
+#define LED_BLUE_2_Pin GPIO_PIN_13
+#define LED_BLUE_2_GPIO_Port GPIOB
+#define LED_BLUE_3_Pin GPIO_PIN_14
+#define LED_BLUE_3_GPIO_Port GPIOB
+#define LED_BLUE_4_Pin GPIO_PIN_15
+#define LED_BLUE_4_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
