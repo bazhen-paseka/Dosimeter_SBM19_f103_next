@@ -58,11 +58,11 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_BOARD_Pin GPIO_PIN_1
+#define LED_BOARD_GPIO_Port GPIOA
 #define SBM19_IRQ_Pin GPIO_PIN_1
-#define SBM19_IRQ_GPIO_Port GPIOA
+#define SBM19_IRQ_GPIO_Port GPIOB
 #define SBM19_IRQ_EXTI_IRQn EXTI1_IRQn
-#define LED_BOARD_Pin GPIO_PIN_0
-#define LED_BOARD_GPIO_Port GPIOB
 #define LED_BLUE_1_Pin GPIO_PIN_12
 #define LED_BLUE_1_GPIO_Port GPIOB
 #define LED_BLUE_2_Pin GPIO_PIN_13
@@ -80,5 +80,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
